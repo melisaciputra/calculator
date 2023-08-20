@@ -4,10 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Calculator</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="style.css" /> 
     <script src="js-file.js" defer></script>
 </head>
 <body>
-    
+    <div id="container">
+        <div id="display-container">
+            <p id="currentOp"></p>
+            <p id="display">0</p>
+        </div>
+        <div class="row clearBtns">
+            <button class="clear">CLEAR</button>
+            <button class="backspace">DELETE</button>
+        </div>
+        <div class="row">
+            <button class="input" value="7">7</button>
+            <button class="input" value="8">8</button>
+            <button class="input" value="9">9</button>
+            <button class="opInput" value="÷">÷</button>
+        </div>
+        <div class="row">
+            <button class="input" value="4">4</button>
+            <button class="input" value="5">5</button>
+            <button class="input" value="6">6</button>
+            <button class="opInput" value="×">×</button>
+        </div>
+        <div class="row">
+            <button class="input" value="1">1</button>
+            <button class="input" value="2">2</button>
+            <button class="input" value="3">3</button>
+            <button class="opInput" value="-">-</button>
+        </div>
+        <div class="row">
+            <button class="input" value="0">0</button>
+            <button class="input" value=".">.</button>
+            <button class="enterBtn" value="=">=</button>
+            <button class="opInput" value="+">+</button>
+        </div>   
+    </div>
 </body>
 
 </html>
