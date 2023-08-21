@@ -21,8 +21,8 @@ function divide (a,b){
     return a/b;
 }
 function operate(n1,n2,op){
-    let a = parseInt(n1);
-    let b = parseInt(n2);
+    let a = Number(n1);
+    let b = Number(n2);
     switch (op) {
         case "+":
             return add(a,b);
@@ -42,8 +42,8 @@ function operate(n1,n2,op){
 
 // function for input number(s)
 function displayCurrentNum(e){
-    //if result being displayed after enter, a jjjjjju.,new number entry wil simply replace it
-    // as if things has been reset
+    // a new number entry wil replace result of calculation
+    // as if things being reset. 
     if (resultBeingDisplayed) {
         n1 = "";
         displayValue = e.target.value;
@@ -56,8 +56,16 @@ function displayCurrentNum(e){
 // actual calculation used by operator and equal buttons
 function calculate(){
     n2 = displayValue;
-    displayValue = operate(n1,n2,op).toString();
+    let result = 0;
+    result = operate(n1,n2,op);
+    displayValue = limitDecimalPoint(result,5);
     currentDisplay.textContent = displayValue;
+}
+
+/* Takes any number, and limit and returns string */
+function limitDecimalPoint(num, limit){
+    const dec = num.toString().split('.')[1];
+    return (!isNaN(dec) && dec.length > limit) ? num.toFixed(limit) : num.toString();
 }
 
 function resetAfterCalc(){
@@ -113,6 +121,14 @@ function enter(){
     }
 }
 
+/** Remove displayValue last char*/
+function backspace(){
+    let currentDisplayValue = currentDisplay.textContent;
+    currentDisplayValue = (currentDisplayValue.length > 1) ? currentDisplayValue.slice(0, -1) : 0;
+    currentDisplay.textContent = currentDisplayValue;
+    n1 = currentDisplayValue;
+}
+
 //listen to button click
 btns.forEach(btn => btn.addEventListener('click', 
     function(e) {
@@ -121,6 +137,7 @@ btns.forEach(btn => btn.addEventListener('click',
         else if (classList.contains('opInput')) operateNum(e);
         else if (classList.contains('enterBtn')) enter();
         else if (classList.contains('clear')) clear();
+        else if (classList.contains('backspace')) backspace();
     })
 );
 
